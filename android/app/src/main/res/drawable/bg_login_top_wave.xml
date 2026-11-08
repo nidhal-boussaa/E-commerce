@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="120dp"
+    android:viewportWidth="360"
+    android:viewportHeight="120">
+    <!-- Vague principale rouge -->
+    <path
+        android:fillColor="#E53935"
+        android:pathData="M0,0 L360,0 L360,50 C300,90 220,30 150,75 C90,110 30,85 0,65 Z" />
+    <!-- Vague d'accentuation en transparence -->
+    <path
+        android:fillColor="#EF5350"
+        android:fillAlpha="0.5"
+        android:pathData="M0,0 L360,0 L360,35 C280,75 190,20 120,55 C60,85 20,65 0,50 Z" />
+    <!-- Bulles décoratives -->
+    <path
+        android:fillColor="#E53935"
+        android:fillAlpha="0.4"
+        android:pathData="M30,75 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0" />
+    <path
+        android:fillColor="#E53935"
+        android:fillAlpha="0.3"
+        android:pathData="M28,110 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
+    <path
+        android:fillColor="#E53935"
+        android:fillAlpha="0.2"
+        android:pathData="M340,80 m-12,0 a12,12 0 1,0 24,0 a12,12 0 1,0 -24,0" />
+</vector>

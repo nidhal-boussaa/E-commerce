@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Couleurs principales E-Shop -->
+    <color name="primary_red">#E53935</color>
+    <color name="primary_red_dark">#C62828</color>
+    <color name="primary_red_light">#FFEBEE</color>
+    <color name="primary_red_stroke">#FFCDD2</color>
+    
+    <!-- Couleurs d'accent et dégradés -->
+    <color name="accent_coral">#FF5252</color>
+    <color name="wave_shade_1">#FF3D3D</color>
+    <color name="wave_shade_2">#E53935</color>
+    <color name="wave_shade_dark">#B71C1C</color>
+
+    <!-- Arrière-plans & Surfaces -->
+    <color name="background_light">#F8F8F8</color>
+    <color name="surface_white">#FFFFFF</color>
+    <color name="card_border">#F0F0F0</color>
+
+    <!-- Typographie & Contraste -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#9E9E9E</color>
+    <color name="text_white">#FFFFFF</color>
+    
+    <!-- États & Validation -->
+    <color name="color_success">#43A047</color>
+    <color name="color_error">#D32F2F</color>
+</resources>

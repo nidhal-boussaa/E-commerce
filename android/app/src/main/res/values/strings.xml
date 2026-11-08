@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">E-Shop</string>
+    <string name="slogan">Achetez mieux, vivez mieux !</string>
+
+    <!-- Écran Connexion -->
+    <string name="title_login">Connexion</string>
+    <string name="hint_email">Email address</string>
+    <string name="hint_password">Mot de passe</string>
+    <string name="btn_login">Se connecter</string>
+    <string name="no_account_prompt">Vous n\'avez pas de compte ?</string>
+    <string name="action_signup">S\'inscrire</string>
+    <string name="forgot_password">Mot de passe oublié ?</string>
+
+    <!-- Écran Création de Compte -->
+    <string name="title_signup">Créer un compte</string>
+    <string name="subtitle_signup">Rejoignez notre boutique en ligne</string>
+    <string name="hint_full_name">Nom complet</string>
+    <string name="hint_phone">Numéro de téléphone</string>
+    <string name="hint_confirm_password">Confirmer le mot de passe</string>
+    <string name="btn_signup">S\'inscrire</string>
+    <string name="already_have_account">Déjà un compte ?</string>
+
+    <!-- Messages d'erreur et validation -->
+    <string name="error_empty_field">Ce champ ne peut pas être vide</string>
+    <string name="error_invalid_email">Veuillez entrer une adresse email valide</string>
+    <string name="error_short_password">Le mot de passe doit contenir au moins 6 caractères</string>
+    <string name="error_passwords_do_not_match">Les mots de passe ne correspondent pas</string>
+    <string name="error_invalid_phone">Numéro de téléphone invalide</string>
+    <string name="login_success">Connexion réussie ! Bienvenue</string>
+    <string name="signup_success">Compte créé avec succès !</string>
+
+    <!-- Accessibilité -->
+    <string name="cd_logo">Logo E-Shop</string>
+    <string name="cd_back">Retour</string>
+    <string name="cd_toggle_password">Afficher/masquer le mot de passe</string>
+    <string name="cd_avatar">Photo de profil</string>
+</resources>

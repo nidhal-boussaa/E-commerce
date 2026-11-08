@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Couleurs Principales E-Shop -->
+    <color name="red_primary">#E53935</color>
+    <color name="red_dark">#C62828</color>
+    <color name="red_light">#FFEBEE</color>
+    <color name="red_accent">#FF5252</color>
+
+    <!-- Couleurs Neutres et Fonds -->
+    <color name="white">#FFFFFF</color>
+    <color name="background_light">#F8F8F8</color>
+    <color name="surface_white">#FFFFFF</color>
+    <color name="divider_color">#EEEEEE</color>
+
+    <!-- Couleurs de Texte -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#9E9E9E</color>
+
+    <!-- Couleurs de Statut et Bordures -->
+    <color name="border_input">#E0E0E0</color>
+    <color name="border_input_focused">#E53935</color>
+    <color name="icon_tint">#757575</color>
+    <color name="icon_tint_active">#E53935</color>
+    <color name="error_color">#D32F2F</color>
+    <color name="success_color">#388E3C</color>
+</resources>

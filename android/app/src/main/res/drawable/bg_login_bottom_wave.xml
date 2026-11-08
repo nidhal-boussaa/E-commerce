@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="80dp"
+    android:viewportWidth="360"
+    android:viewportHeight="80">
+    <!-- Vague d'ombre rouge foncé -->
+    <path
+        android:fillColor="#C62828"
+        android:fillAlpha="0.4"
+        android:pathData="M0,60 C80,30 180,85 270,45 C310,30 340,55 360,40 L360,80 L0,80 Z" />
+    <!-- Vague supérieure rouge vif -->
+    <path
+        android:fillColor="#E53935"
+        android:pathData="M0,45 C90,15 160,75 250,30 C290,10 330,35 360,25 L360,80 L0,80 Z" />
+</vector>

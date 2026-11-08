@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.EShop" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Palette principale -->
+        <item name="colorPrimary">@color/primary_red</item>
+        <item name="colorPrimaryDark">@color/primary_red_dark</item>
+        <item name="colorSecondary">@color/accent_coral</item>
+        
+        <!-- Couleurs de fond de fenêtre -->
+        <item name="android:windowBackground">@color/surface_white</item>
+        <item name="android:statusBarColor">@color/surface_white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/surface_white</item>
+    </style>
+</resources>

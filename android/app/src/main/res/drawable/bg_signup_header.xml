@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="220dp"
+    android:viewportWidth="360"
+    android:viewportHeight="220">
+    <!-- Forme ondulée dégradée rouge -->
+    <path
+        android:fillColor="#E53935"
+        android:pathData="M0,0 L360,0 L360,150 C290,195 210,140 140,175 C80,205 30,185 0,165 Z" />
+    <!-- Vague d'accentuation plus claire -->
+    <path
+        android:fillColor="#EF5350"
+        android:fillAlpha="0.3"
+        android:pathData="M0,0 L360,0 L360,130 C270,170 190,120 120,150 C60,175 20,160 0,145 Z" />
+</vector>
