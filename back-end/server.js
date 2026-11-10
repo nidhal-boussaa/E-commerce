@@ -80,7 +80,13 @@ app.get('/api/categories', async (req, res) => {
 app.get('/api/products/:id', async (req, res) => {
     try {
         const [products] = await db.query(
-            'SELECT * FROM products WHERE id = ?',
+            `SELECT 
+                p.*,
+                c.name AS category
+             FROM products p
+             LEFT JOIN categories c
+             ON p.category_id = c.id
+             WHERE p.id = ?`,
             [req.params.id]
         );
 
@@ -197,11 +203,34 @@ app.post('/api/auth/login', async (req, res) => {
 
 
 
-const { verifyToken, verifyAdmin } = require('./middleware/auth');app.get('/api/profile', verifyToken, async (req, res) => {
-    res.json({
-        message: 'Accès autorisé',
-        user: req.user
-    });
+
+const { verifyToken, verifyAdmin } = require('./middleware/auth');
+
+app.get('/api/profile', verifyToken, async (req, res) => {
+    try {
+        const [users] = await db.query(
+            `SELECT id, full_name, email, phone, address, created_at, role
+             FROM users
+             WHERE id = ?`,
+            [req.user.id]
+        );
+
+        if (users.length === 0) {
+            return res.status(404).json({
+                message: 'Utilisateur introuvable'
+            });
+        }
+
+        res.json({
+            message: 'Profil récupéré avec succès',
+            user: users[0]
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        });
+    }
 });
 
 
@@ -266,6 +295,278 @@ app.delete('/api/products/:id', verifyToken, verifyAdmin, async (req, res) => {
         res.json({ message: 'Produit désactivé avec succès' });
     } catch (error) {
         res.status(500).json({ error: error.message });
+    }
+});
+
+app.put('/api/profile', verifyToken, async (req, res) => {
+    try {
+        const { full_name, email, phone } = req.body;
+
+        if (!full_name || !email) {
+            return res.status(400).json({
+                message: 'Le nom et l’email sont obligatoires'
+            });
+        }
+
+        // Vérifier si l'email est déjà utilisé par un autre utilisateur
+        const [existingUsers] = await db.query(
+            'SELECT id FROM users WHERE email = ? AND id != ?',
+            [email, req.user.id]
+        );
+
+        if (existingUsers.length > 0) {
+            return res.status(409).json({
+                message: 'Cette adresse email est déjà utilisée'
+            });
+        }
+
+        await db.query(
+            `UPDATE users
+             SET full_name = ?, email = ?, phone = ?
+             WHERE id = ?`,
+            [full_name.trim(), email.trim(), phone || null, req.user.id]
+        );
+
+        res.json({
+            message: 'Profil modifié avec succès'
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        });
+    }
+});
+// Récupérer les adresses du client connecté
+app.get('/api/profile/addresses', verifyToken, async (req, res) => {
+    try {
+        const userId = req.user.id;
+
+        // Adresse principale
+        const [users] = await db.query(
+            'SELECT address FROM users WHERE id = ?',
+            [userId]
+        );
+
+        if (users.length === 0) {
+            return res.status(404).json({
+                message: 'Utilisateur introuvable'
+            });
+        }
+
+        const addresses = [];
+        const seen = new Set();
+
+        // Ajouter l'adresse principale
+        const mainAddress = users[0].address?.trim();
+
+        if (mainAddress) {
+            addresses.push({
+                address: mainAddress,
+                is_default: true
+            });
+
+            seen.add(mainAddress.toLowerCase());
+        }
+
+        // Récupérer les adresses des commandes
+        const [orders] = await db.query(
+            `SELECT DISTINCT delivery_address
+             FROM orders
+             WHERE user_id = ?
+             AND delivery_address IS NOT NULL
+             AND TRIM(delivery_address) <> ''`,
+            [userId]
+        );
+
+        // Éviter les doublons
+        for (const order of orders) {
+            const address = order.delivery_address.trim();
+            const key = address.toLowerCase();
+
+            if (!seen.has(key)) {
+                addresses.push({
+                    address: address,
+                    is_default: false
+                });
+
+                seen.add(key);
+            }
+        }
+
+        res.json({
+            message: 'Adresses récupérées avec succès',
+            addresses: addresses
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            message: 'Erreur lors de la récupération des adresses'
+        });
+    }
+});
+
+// Ajouter une adresse principale
+app.post('/api/profile/address', verifyToken, async (req, res) => {
+    try {
+        const { address, city, postal_code, country } = req.body;
+
+        if (
+            typeof address !== 'string' || !address.trim() ||
+            typeof city !== 'string' || !city.trim() ||
+            typeof postal_code !== 'string' || !postal_code.trim() ||
+            typeof country !== 'string' || !country.trim()
+        ) {
+            return res.status(400).json({
+                message: 'Tous les champs sont obligatoires'
+            });
+        }
+
+        const [users] = await db.query(
+            'SELECT address FROM users WHERE id = ?',
+            [req.user.id]
+        );
+
+        if (users.length === 0) {
+            return res.status(404).json({
+                message: 'Utilisateur introuvable'
+            });
+        }
+
+        if (users[0].address && users[0].address.trim()) {
+            return res.status(409).json({
+                message: 'Une adresse principale existe déjà'
+            });
+        }
+
+        const fullAddress = [
+            address.trim(),
+            city.trim(),
+            postal_code.trim(),
+            country.trim()
+        ].join(', ');
+
+        await db.query(
+            'UPDATE users SET address = ? WHERE id = ?',
+            [fullAddress, req.user.id]
+        );
+
+        res.status(201).json({
+            message: 'Adresse principale ajoutée avec succès',
+            address: fullAddress
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            message: 'Erreur lors de l’ajout de l’adresse'
+        });
+    }
+});
+
+// Modifier l'adresse principale
+app.put('/api/profile/address', verifyToken, async (req, res) => {
+    try {
+        const { address, city, postal_code, country } = req.body;
+
+        if (
+            typeof address !== 'string' || !address.trim() ||
+            typeof city !== 'string' || !city.trim() ||
+            typeof postal_code !== 'string' || !postal_code.trim() ||
+            typeof country !== 'string' || !country.trim()
+        ) {
+            return res.status(400).json({
+                message: 'Tous les champs sont obligatoires'
+            });
+        }
+
+        const [users] = await db.query(
+            'SELECT address FROM users WHERE id = ?',
+            [req.user.id]
+        );
+
+        if (users.length === 0) {
+            return res.status(404).json({
+                message: 'Utilisateur introuvable'
+            });
+        }
+
+        if (!users[0].address || !users[0].address.trim()) {
+            return res.status(404).json({
+                message: 'Aucune adresse principale à modifier'
+            });
+        }
+
+        const fullAddress = [
+            address.trim(),
+            city.trim(),
+            postal_code.trim(),
+            country.trim()
+        ].join(', ');
+
+        await db.query(
+            'UPDATE users SET address = ? WHERE id = ?',
+            [fullAddress, req.user.id]
+        );
+
+        res.json({
+            message: 'Adresse principale modifiée avec succès',
+            address: fullAddress
+        });
+
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).json({
+            message: 'Erreur lors de la modification de l’adresse'
+        });
+    }
+});
+
+
+
+// Récupérer les commandes du client connecté
+app.get('/api/orders/my-orders', verifyToken, async (req, res) => {
+    try {
+        const userId = req.user.id;
+
+        // Récupérer les commandes
+        const [orders] = await db.query(
+            `SELECT id, total_amount, status, delivery_address,
+                    payment_method, created_at
+             FROM orders
+             WHERE user_id = ?
+             ORDER BY created_at DESC`,
+            [userId]
+        );
+
+        // Récupérer les produits de chaque commande
+        for (const order of orders) {
+            const [items] = await db.query(
+                `SELECT id, quantity, unit_price, product_name,
+                        product_id
+                 FROM order_items
+                 WHERE order_id = ?`,
+                [order.id]
+            );
+
+            order.items = items;
+        }
+
+        res.json({
+            message: 'Commandes récupérées avec succès',
+            orders: orders
+        });
+
+    } catch (error) {
+        console.error('Erreur commandes :', error);
+
+        res.status(500).json({
+            message: 'Erreur lors de la récupération des commandes'
+        });
     }
 });
 

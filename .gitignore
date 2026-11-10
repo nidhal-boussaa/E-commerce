@@ -1,0 +1,9 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+back-end/.env
+
+# SQL backup
+document/*.sql
