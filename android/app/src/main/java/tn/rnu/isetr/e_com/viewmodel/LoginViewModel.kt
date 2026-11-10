@@ -4,39 +4,29 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import tn.rnu.isetr.e_com.model.LoginResponse
 import tn.rnu.isetr.e_com.repository.AuthRepository
 
 class LoginViewModel : ViewModel() {
 
     private val repository = AuthRepository()
 
-    val loginResult = MutableLiveData<String>()
+    val loginResult = MutableLiveData<LoginResponse>()
     val loginError = MutableLiveData<String>()
 
     fun login(email: String, password: String) {
         viewModelScope.launch {
             try {
                 val response = repository.login(email, password)
+                val body = response.body()
 
-                android.util.Log.d(
-                    "LOGIN_TEST",
-                    "HTTP CODE: ${response.code()}"
-                )
-
-                android.util.Log.d(
-                    "LOGIN_TEST",
-                    "BODY: ${response.body()}"
-                )
-
-                if (response.isSuccessful) {
-                    loginResult.value = response.body()?.token
-                } else {
-                    loginError.value = "HTTP ${response.code()}"
+                when {
+                    !response.isSuccessful -> loginError.postValue("HTTP ${response.code()}")
+                    body == null -> loginError.postValue("Réponse serveur vide")
+                    else -> loginResult.postValue(body)
                 }
-
             } catch (e: Exception) {
-                android.util.Log.e("LOGIN_TEST", "ERROR", e)
-                loginError.value = e.toString()
+                loginError.postValue(e.message ?: "Erreur de connexion")
             }
         }
     }

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:maxHeight="600dp"
+    android:background="@color/background_light"
+    tools:context=".ui.profil.ProfileFragment">
+
+    <!-- Toolbar supérieure -->
+    <RelativeLayout
+        android:id="@+id/toolbarOrders"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="@color/white"
+        android:elevation="2dp"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Retour"
+            android:padding="6dp"
+            android:src="@drawable/ic_arrow_back_white"
+            app:tint="@color/text_primary" />
+
+        <TextView
+            android:id="@+id/tvToolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Mes commandes"
+            android:textColor="@color/text_primary"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <!-- Liste des commandes -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvOrders"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:nestedScrollingEnabled="false"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarOrders"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_order" />
+
+    <!-- État vide -->
+    <LinearLayout
+        android:id="@+id/layoutEmptyOrders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarOrders">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:cardBackgroundColor="@color/red_light"
+            app:cardCornerRadius="40dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@null"
+                android:padding="20dp"
+                android:src="@drawable/ic_shopping_bag"
+                app:tint="@color/red_primary" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Aucune commande trouvée"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:text="Vous n'avez pas encore passé de commande. Découvrez notre catalogue pour commencer vos achats !"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnExploreProducts"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_button_red"
+            android:paddingHorizontal="24dp"
+            android:text="Découvrir les produits"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

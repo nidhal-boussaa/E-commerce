@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
+    <!-- Fond blanc circulaire -->
     <solid android:color="@color/white" />
+    <!-- Légère bordure grise discrète pour faire ressortir l'icône -->
     <stroke
-        android:width="2.5dp"
-        android:color="@color/red_primary" />
-    <size
-        android:width="92dp"
-        android:height="92dp" />
+        android:width="1dp"
+        android:color="#EEEEEE" />
 </shape>

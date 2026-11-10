@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import tn.rnu.isetr.e_com.MainActivity
 import tn.rnu.isetr.e_com.databinding.ActivityLoginBinding
-import tn.rnu.isetr.e_com.ui.home.HomeActivity
 import tn.rnu.isetr.e_com.viewmodel.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -26,7 +26,6 @@ class LoginActivity : AppCompatActivity() {
         binding.tvGoToSignUp.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         binding.btnLogin.setOnClickListener {
@@ -40,17 +39,39 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.loginResult.observe(this) { token ->
-            if (!token.isNullOrEmpty()) {
-                sessionManager.saveToken(token)
 
-                Toast.makeText(this, "Login réussi", Toast.LENGTH_SHORT).show()
+        viewModel.loginResult.observe(this) { result ->
 
-                val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent)
+            if (result.user.role.equals("CLIENT", ignoreCase = true)) {
+
+                sessionManager.saveToken(result.token)
+
+                Toast.makeText(
+                    this,
+                    "Login réussi",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                startActivity(Intent(this, MainActivity::class.java))
                 finish()
+            } else if (result.user.role.equals("ADMIN", ignoreCase = true)) {
+
+                Toast.makeText(
+                    this,
+                    "Accès réservé aux clients",
+                    Toast.LENGTH_LONG
+                ).show()
+
+            } else {
+
+                Toast.makeText(
+                    this,
+                    "Rôle non autorisé",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
+
 
         viewModel.loginError.observe(this) { error ->
             if (!error.isNullOrEmpty()) {

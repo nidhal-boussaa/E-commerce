@@ -35,4 +35,5 @@
     <string name="cd_back">Retour</string>
     <string name="cd_toggle_password">Afficher/masquer le mot de passe</string>
     <string name="cd_avatar">Photo de profil</string>
+    <string name="mes_adresses">Mes adresses</string>
 </resources>

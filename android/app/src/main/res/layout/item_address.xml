@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardAddress"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    app:strokeColor="#EF9A9A"
+    app:strokeWidth="1.5dp"
+    app:cardBackgroundColor="#FFF8F8">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <!-- Ligne supérieure : Titre ("Adresse #1") + Badge -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/tvAddressTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="Adresse #1"
+                android:textColor="#212121"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- Badge Principale (Rouge) -->
+            <TextView
+                android:id="@+id/badgePrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_badge_primary"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="3dp"
+                android:text="✓ Adresse principale"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <!-- Badge Secondaire (Gris clair) -->
+            <TextView
+                android:id="@+id/badgeSecondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_badge_secondary"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="3dp"
+                android:text="Secondaire"
+                android:textColor="#78909C"
+                android:textSize="10sp"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <!-- Champ 1 : ADRESSE -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADRESSE : "
+                android:textColor="#78909C"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvAddressLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14 Avenue Habib Bourguiba, Rés. Jasmin"
+                android:textColor="#263238"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Champ 2 : VILLE -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VILLE : "
+                android:textColor="#78909C"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Radès"
+                android:textColor="#263238"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Champ 3 : CODE POSTAL -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CODE POSTAL : "
+                android:textColor="#78909C"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvPostalCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2040"
+                android:textColor="#263238"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Champ 4 : PAYS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PAYS : "
+                    android:textColor="#78909C"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvCountry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tunisie"
+                    android:textColor="#263238"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

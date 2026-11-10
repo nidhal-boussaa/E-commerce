@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    android:orientation="vertical">
+
+    <!-- Barre supérieure -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/white"
+        android:elevation="2dp"
+        android:paddingHorizontal="16dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Retour"
+            android:padding="6dp"
+            android:src="@drawable/ic_arrow_back_white"
+            app:tint="@color/text_primary" />
+
+        <TextView
+            android:id="@+id/tvAddressTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Adresse principale"
+            android:textColor="@color/text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Adresse -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ADRESSE"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="14dp"
+                        android:background="@drawable/bg_input_field"
+                        android:hint="Ex : 24 rue Makka"
+                        android:inputType="textPostalAddress"
+                        android:paddingHorizontal="14dp"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp" />
+
+                    <!-- Ville -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VILLE"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etCity"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="14dp"
+                        android:background="@drawable/bg_input_field"
+                        android:hint="Ex : Megrine"
+                        android:inputType="textCapWords"
+                        android:paddingHorizontal="14dp"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp" />
+
+                    <!-- Code postal -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CODE POSTAL"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etPostalCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="14dp"
+                        android:background="@drawable/bg_input_field"
+                        android:hint="Ex : 2024"
+                        android:inputType="number"
+                        android:paddingHorizontal="14dp"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp" />
+
+                    <!-- Pays -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PAYS"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etCountry"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_input_field"
+                        android:hint="Ex : Tunisie"
+                        android:inputType="textCapWords"
+                        android:paddingHorizontal="14dp"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Bouton Enregistrer -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSaveAddress"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_button_red"
+                android:text="Enregistrer"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

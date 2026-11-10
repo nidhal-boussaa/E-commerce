@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="1dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <!-- Image miniature du produit -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardProductImg"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            app:cardBackgroundColor="@color/background_light"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/ivProductImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Produit"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_shopping_bag"
+                app:tint="@color/red_primary" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Titre et Quantité x Prix unitaire -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="12dp"
+            android:layout_toEndOf="@id/cardProductImg"
+            android:layout_toStartOf="@id/tvProductTotalPrice"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Écouteurs Pro Red Noise Cancelling"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvProductQtyPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Quantité : 2 × 49.99 DT"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Sous-total du produit -->
+        <TextView
+            android:id="@+id/tvProductTotalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="99.98 DT"
+            android:textColor="@color/red_primary"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

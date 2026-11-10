@@ -14,23 +14,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EShop"
         android:usesCleartextTraffic="true">
+
+        <!-- Signup -->
         <activity
             android:name=".ui.auth.SignupActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Login -->
         <activity
             android:name=".ui.auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Main Activity -->
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name=".MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
     </application>
 
 </manifest>

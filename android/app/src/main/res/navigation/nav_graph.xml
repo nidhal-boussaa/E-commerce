@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="tn.rnu.isetr.e_com.ui.home.HomeFragment"
+        android:label="Accueil"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_categories"
+        android:name="tn.rnu.isetr.e_com.ui.categories.CategoriesFragment"
+        android:label="Catégories"
+        tools:layout="@layout/fragment_categories" />
+
+    <fragment
+        android:id="@+id/nav_favorites"
+        android:name="tn.rnu.isetr.e_com.ui.favorites.FavoritesFragment"
+        android:label="Favoris"
+        tools:layout="@layout/fragment_favorites" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="tn.rnu.isetr.e_com.ui.profil.ProfileFragment"
+        android:label="Profil"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_product_detail"
+        android:name="tn.rnu.isetr.e_com.ui.products.ProductDetailFragment"
+        android:label="Détails du produit"
+        tools:layout="@layout/fragment_product_detail">
+
+        <argument
+            android:name="PRODUCT_ID"
+            app:argType="integer" />
+
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_product_detail"
+        app:destination="@id/nav_product_detail" />
+
+</navigation>
